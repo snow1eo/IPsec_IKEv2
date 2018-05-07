@@ -1,0 +1,241 @@
+    // length = ike_auth (output_buff3);
+    // puts ("============= THIRD PACKET =============");
+    // for (int i = 0; i < length; i++)
+    //     printf ("%02x:", (unsigned char) *(output_buff3+i));
+    // puts ("\n========================================");
+
+    // memcpy (input_buff, output_buff3, length);
+    // length = receive (input_buff, output_buff4);
+    // puts ("============= FOURTH PACKET ============");
+    // for (int i = 0; i < length; i++)
+    //     printf ("%02x:", (unsigned char) *(output_buff4+i));
+    // puts ("\n========================================");
+
+    /*generic_payload_header hdr0, hdr1;
+
+    hdr0.next_payload = 254;
+    hdr0.critical = 127;
+    hdr0.payload_length = 258;
+
+    char *buf = malloc (sizeof (generic_payload_header));
+    gen_pl_hdr2char (&hdr0, buf);
+
+    char2gen_pl_hdr (buf, &hdr1);
+    printf ("Before:\n%d\n%d\n%d\n", hdr0.next_payload, hdr0.critical, hdr0.payload_length);
+    for(int i=0; i<sizeof(generic_payload_header);printf("%02x:",(unsigned char)*(buf+i++)));puts("");
+    printf ("After:\n%d\n%d\n%d\n", hdr1.next_payload, hdr1.critical, hdr1.payload_length);*/
+
+    // transform trans;
+    // trans.more = 3;
+    // trans.reserved1 = 0;
+    // trans.transform_type = 2;
+    // trans.reserved2 = 0;
+    // trans.transform_ID = 3;
+    // trans.attribute_format = 0;
+    // trans.attribute_type = 14;
+    // trans.attribute_value = malloc (4);
+    // trans.attribute_value[0] = 0;
+    // trans.attribute_value[1] = 2;
+    // trans.attribute_value[2] = 32;
+    // trans.attribute_value[3] = 255;
+    // if (trans.attribute_value == NULL)
+    // {
+    //  puts ("ERROR");
+    //  return -1;
+    // }
+    // trans.transform_length = 4 + sizeof (transform) - sizeof (trans.attribute_value);
+    
+    // printf ("Before:\n%u\n%u\n%u\n%u\n%u\n%u\n",
+    //  (unsigned char)trans.more,
+    //  (unsigned char)trans.reserved1,
+    //  (unsigned short)trans.transform_length,
+    //  (unsigned char)trans.transform_type,
+    //  (unsigned char)trans.reserved2,
+    //  (unsigned char)trans.transform_ID);
+
+    // printf ("Before:\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n",
+    //     (unsigned char)trans.more,
+    //     (unsigned char)trans.reserved1,
+    //     (unsigned short)trans.transform_length,
+    //     (unsigned char)trans.transform_type,
+    //     (unsigned char)trans.reserved2,
+    //     (unsigned char)trans.transform_ID,
+    //     (unsigned char)trans.attribute_format,
+    //     (unsigned char)trans.attribute_type,
+    //     (unsigned char)trans.attribute_value[0],
+    //     (unsigned char)trans.attribute_value[1],
+    //     (unsigned char)trans.attribute_value[2],
+    //     (unsigned char)trans.attribute_value[3]);
+
+    // char *buf = malloc (trans.transform_length);
+    // transform2char (&trans, buf);
+    // for(int i=0; i<trans.transform_length;i++) printf("%02x:",(unsigned char)*(buf+i));puts("");
+
+    // transform trans1;
+
+    // char2transform (buf, &trans1);
+
+    // printf ("After:\n%u\n%u\n%u\n%u\n%u\n%u\n",
+    //  (unsigned char)trans1.more,
+    //  (unsigned char)trans1.reserved1,
+    //  (unsigned short)trans1.transform_length,
+    //  (unsigned char)trans1.transform_type,
+    //  (unsigned char)trans1.reserved2,
+    //  (unsigned char)trans1.transform_ID);
+
+    // printf ("After:\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n",
+    //     (unsigned char)trans1.more,
+    //     (unsigned char)trans1.reserved1,
+    //     (unsigned short)trans1.transform_length,
+    //     (unsigned char)trans1.transform_type,
+    //     (unsigned char)trans1.reserved2,
+    //     (unsigned char)trans1.transform_ID,
+    //     (unsigned char)trans1.attribute_format,
+    //     (unsigned char)trans1.attribute_type,
+    //     (unsigned char)trans1.attribute_value[0],
+    //     (unsigned char)trans1.attribute_value[1],
+    //     (unsigned char)trans1.attribute_value[2],
+    //     (unsigned char)trans1.attribute_value[3]);
+
+
+    // transform trans2;
+    // trans2.more = 0;
+    // trans2.reserved1 = 0;
+    // trans2.transform_type = 2;
+    // trans2.reserved2 = 0;
+    // trans2.transform_ID = 1024;
+    // trans2.transform_length = 8;
+    // //printf ("%d\n", trans2.transform_ID);
+
+    // int sum_tr_len = trans.transform_length + trans2.transform_length;
+
+    // // // puts ("FAIL");
+    // proposal prop;
+    // prop.more = 0;
+    // prop.reserved = 0;
+    // prop.proposal_num = 1;
+    // prop.protocol_ID = 1;
+    // prop.SPI_size = 0;
+    // prop.num_transforms = 2; 
+    // prop.proposal_length = sum_tr_len + prop.SPI_size + 
+    //  sizeof (proposal) - sizeof (prop.SPI) - 
+    //  sizeof (prop.transforms);
+    // prop.transforms = calloc (prop.num_transforms, sizeof (transform));
+    // if (prop.transforms == NULL)
+    // {
+    //  puts ("ERROR");
+    //  return -1;
+    // }
+    // prop.transforms[0] = trans;
+    // prop.transforms[1] = trans2;
+
+    // printf ("Before:\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n",
+    //  (unsigned char)prop.more,
+    //  (unsigned char)prop.reserved,
+    //  (unsigned short)prop.proposal_length,
+    //  (unsigned char)prop.proposal_num,
+    //  (unsigned char)prop.protocol_ID,
+    //  (unsigned char)prop.SPI_size,
+    //  (unsigned char)prop.num_transforms,
+
+    //  (unsigned char)prop.transforms[0].more,
+    //  (unsigned char)prop.transforms[0].reserved1,
+    //  (unsigned short)prop.transforms[0].transform_length,
+    //  (unsigned char)prop.transforms[0].transform_type,
+    //  (unsigned char)prop.transforms[0].reserved2,
+    //  (unsigned short)prop.transforms[0].transform_ID,
+    //  (unsigned char)prop.transforms[0].attribute_format,
+    //  (unsigned char)prop.transforms[0].attribute_type,
+    //  (unsigned char)prop.transforms[0].attribute_value[0],
+    //  (unsigned char)prop.transforms[0].attribute_value[1],
+    //  (unsigned char)prop.transforms[0].attribute_value[2],
+    //  (unsigned char)prop.transforms[0].attribute_value[3],
+
+    //  (unsigned char)prop.transforms[1].more,
+    //  (unsigned char)prop.transforms[1].reserved1,
+    //  (unsigned short)prop.transforms[1].transform_length,
+    //  (unsigned char)prop.transforms[1].transform_type,
+    //  (unsigned char)prop.transforms[1].reserved2,
+    //  (unsigned short)prop.transforms[1].transform_ID);
+    
+    // char *buf = malloc (prop.proposal_length);
+    // proposal2char (&prop, buf);
+    // for(int i=0; i<prop.proposal_length;i++) printf("%02x:",(unsigned char)*(buf+i));puts("");
+
+    // proposal prop1;
+    // prop1.transforms = calloc (prop.num_transforms, sizeof (transform));
+    // prop1.transforms[0].attribute_value = malloc (4);
+    // char2proposal (buf, &prop1);
+
+    // printf ("After:\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n%u\n",
+    //  (unsigned char)prop1.more,
+    //  (unsigned char)prop1.reserved,
+    //  (unsigned short)prop1.proposal_length,
+    //  (unsigned char)prop1.proposal_num,
+    //  (unsigned char)prop1.protocol_ID,
+    //  (unsigned char)prop1.SPI_size,
+    //  (unsigned char)prop1.num_transforms,
+
+    //  (unsigned char)prop1.transforms[0].more,
+    //  (unsigned char)prop1.transforms[0].reserved1,
+    //  (unsigned short)prop1.transforms[0].transform_length,
+    //  (unsigned char)prop1.transforms[0].transform_type,
+    //  (unsigned char)prop1.transforms[0].reserved2,
+    //  (unsigned short)prop1.transforms[0].transform_ID,
+    //  (unsigned char)prop1.transforms[0].attribute_format,
+    //  (unsigned char)prop1.transforms[0].attribute_type,
+    //  (unsigned char)prop1.transforms[0].attribute_value[0],
+    //  (unsigned char)prop1.transforms[0].attribute_value[1],
+    //  (unsigned char)prop1.transforms[0].attribute_value[2],
+    //  (unsigned char)prop1.transforms[0].attribute_value[3],
+
+    //  (unsigned char)prop1.transforms[1].more,
+    //  (unsigned char)prop1.transforms[1].reserved1,
+    //  (unsigned short)prop1.transforms[1].transform_length,
+    //  (unsigned char)prop1.transforms[1].transform_type,
+    //  (unsigned char)prop1.transforms[1].reserved2,
+    //  (unsigned short)prop1.transforms[1].transform_ID);
+
+
+    // generic_payload_header pl_hdr;
+    // pl_hdr.next_payload = 0;
+    // pl_hdr.critical = 0;
+
+    // SA_payload sa_pl;
+    // sa_pl.header = pl_hdr;
+    // sa_pl.proposals = malloc (sizeof (proposal)*4);
+    // sa_pl.proposals[0] = prop;
+    // sa_pl.header.payload_length = 
+    //  sizeof (sa_pl.header) + sa_pl.proposals[0].proposal_length;
+
+    // int length = prop.proposal_length;
+    // char *buf = malloc (length);
+    // if (buf == NULL)
+    // {
+    //  puts ("ERROR");
+    //  return -1;
+    // }
+    // proposal2char (&prop, buf);
+    // printf ("xx:xx:xx:xx:");
+    // for (int i=0; i<length; i++)
+     //         printf ("%02x:", (unsigned char) *(buf+i));
+     //     puts ("");
+     //     free (buf);
+
+
+    // length = sa_pl.header.payload_length;
+    // buf = malloc (length);
+    // if (buf == NULL)
+    // {
+    //  puts ("ERROR");
+    //  return -1;
+    // }
+    // sa_pl2char (&sa_pl, buf);
+    // for (int i=0; i<length; i++)
+    //      printf ("%02x:", (unsigned char) *(buf+i));
+    //  puts ("");
+    //  free (buf);
+
+    // free (sa_pl.proposals);
+    //  free (prop.transforms);
+    // free (trans.attribute_value);
